@@ -1,7 +1,17 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
+poppos_lunch:
+  name: "lunch"
+  restaurant: poppos_cafe
 
-two:
-  name: MyString
+poppos_dinner:
+  name: "dinner"
+  restaurant: poppos_cafe
+
+casa_lunch:
+  name: "lunch"
+  restaurant: casa_del_poppo
+
+casa_dinner:
+  name: "dinner"
+  restaurant: casa_del_poppo
