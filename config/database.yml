@@ -5,7 +5,10 @@ default: &default
   password: 123
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
-
 development:
   <<: *default
   database: library_development
+
+test:
+  <<: *default
+  database: library_test
