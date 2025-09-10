@@ -16,7 +16,7 @@ RSpec.describe Api::RestaurantsController, type: :request do
 
       json_response = JSON.parse(response.body)
       expect(json_response.length).to be >= 1
-      
+
       restaurant_data = json_response.find { |r| r["name"] == restaurant.name }
       expect(restaurant_data).not_to be_nil
       expect(restaurant_data["name"]).to eq(restaurant.name)

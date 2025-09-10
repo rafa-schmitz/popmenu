@@ -53,7 +53,7 @@ RSpec.describe RestaurantImportService do
         expect(restaurant).not_to be_nil
         expect(restaurant.menus.count).to eq(2)
         expect(restaurant.menu_items.count).to eq(2) # 2 unique menu items per restaurant (Test Burger, Test Salad)
-        
+
         # Verify restaurant-scoped uniqueness - 2 unique menu items exist for this restaurant
         expect(MenuItem.count).to eq(2)
         expect(restaurant.menu_items.count).to eq(2)
@@ -138,7 +138,7 @@ RSpec.describe RestaurantImportService do
         expect(restaurant.menu_items.count).to eq(1) # Only one unique menu item (same name)
         expect(restaurant.menus.count).to eq(2) # But two menus
         expect(restaurant.menus.all? { |menu| menu.menu_items.include?(restaurant.menu_items.first) }).to be true
-        
+
         # Verify only one menu item exists for this restaurant
         expect(MenuItem.count).to eq(1)
         expect(MenuItem.first.price).to eq(15.99) # Price should be updated to the last processed price
@@ -362,18 +362,18 @@ RSpec.describe RestaurantImportService do
         result2 = service2.import
 
         expect(result2[:success]).to be true
-        
+
         # Should have 2 menu items (one for each restaurant)
         expect(MenuItem.count).to eq(2)
 
         # Each restaurant should have its own menu item
         first_restaurant = Restaurant.find_by(name: "First Restaurant")
         second_restaurant = Restaurant.find_by(name: "Second Restaurant")
-        
+
         expect(first_restaurant.menu_items.count).to eq(1)
         expect(second_restaurant.menu_items.count).to eq(1)
         expect(first_restaurant.menu_items.first).not_to eq(second_restaurant.menu_items.first)
-        
+
         # Each should have the correct price
         expect(first_restaurant.menu_items.first.price).to eq(9.99)
         expect(second_restaurant.menu_items.first.price).to eq(15.99)
@@ -412,7 +412,7 @@ RSpec.describe RestaurantImportService do
 
         expect(result[:success]).to be true
         expect(result[:success_count]).to eq(2) # Both items processed
-        
+
         # Should only have 1 menu item due to case-insensitive uniqueness within restaurant
         expect(MenuItem.count).to eq(1)
         expect(MenuItem.first.name).to eq("Mixed Case Burger")

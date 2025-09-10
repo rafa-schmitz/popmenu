@@ -74,7 +74,7 @@ RSpec.describe MenuItem, type: :model do
       menu_item.save!
       menu = restaurant.menus.create!(name: "Test Menu")
       menu.menu_items << menu_item
-      
+
       expect { menu_item.destroy }.to change { MenuMenuItem.count }.by(-1)
     end
   end

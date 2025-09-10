@@ -21,7 +21,7 @@ RSpec.describe Api::MenuItemsController, type: :request do
 
       json_response = JSON.parse(response.body)
       expect(json_response.length).to be >= 1
-      
+
       item_data = json_response.find { |i| i["name"] == menu_item.name }
       expect(item_data).not_to be_nil
       expect(item_data["name"]).to eq(menu_item.name)
